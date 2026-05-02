@@ -1,0 +1,155 @@
+{
+  "phases": [
+    {
+      "id": "phase1",
+      "titre": "Phase 1 — Infiltration",
+      "narration_default": "Connexion établie. Terminal NovaCorp compromis. Deux messages arrivent simultanément — NovaCorp et le Collectif réclament votre allégeance. Choisissez vite.",
+      "choix": [
+        {
+          "id": "nova",
+          "label": "[> RÉPONDRE À NOVACORP]",
+          "faction": "nova",
+          "feedback": "NovaCorp accuse réception. Ils semblent satisfaits. Votre couverture tient.",
+          "points": 1
+        },
+        {
+          "id": "collectif",
+          "label": "[> CONTACTER LE COLLECTIF]",
+          "faction": "collectif",
+          "feedback": "Le Collectif confirme la réception. Signal chiffré. Ils vous font confiance.",
+          "points": 1
+        }
+      ],
+      "enigme": {
+        "id": "enigme1",
+        "type": "texte",
+        "titre": "Message intercepté — ROT13",
+        "description": "Un message chiffré en ROT13 circule sur le réseau interne. Déchiffrez-le.",
+        "chiffre": "Yn pyé qr ibûgr rfg : syntzr",
+        "indice": "ROT13 décale chaque lettre de 13 positions dans l'alphabet. A devient N, B devient O, etc. Les chiffres et caractères spéciaux ne changent pas.",
+        "reponse_attendue": "la clé de voûte est : flamme",
+        "placeholder": "Entrez le message déchiffré..."
+      }
+    },
+    {
+      "id": "phase2",
+      "titre": "Phase 2 — Double Jeu",
+      "narration_nova": "NovaCorp vous presse d'agir. Deux fichiers encodés attendent votre analyse. Vous sentez leur impatience — et celle du Collectif qui observe.",
+      "narration_collectif": "Le Collectif vous guide dans l'ombre. Les fichiers encodés de NovaCorp sont entre vos mains. Une opportunité unique.",
+      "narration_default": "Deux factions, deux fichiers encodés. Le temps presse. Analysez — choisissez.",
+      "choix": [
+        {
+          "id": "nova",
+          "label": "[> TRANSMETTRE À NOVACORP]",
+          "faction": "nova",
+          "feedback": "Fichiers transmis. NovaCorp vous accorde un bonus d'accès niveau 3.",
+          "points": 1
+        },
+        {
+          "id": "collectif",
+          "label": "[> TRANSMETTRE AU COLLECTIF]",
+          "faction": "collectif",
+          "feedback": "Données reçues par le Collectif. Ils préparent la prochaine étape.",
+          "points": 1
+        }
+      ],
+      "enigmes": [
+        {
+          "id": "enigme2a",
+          "type": "texte",
+          "titre": "Fichier encodé — Base64",
+          "description": "Décodez cette chaîne Base64 interceptée dans les logs réseau.",
+          "chiffre": "T3BwdXJyZW5jZSA6IG9wZXJhdGlvbiBwaG9lbml4",
+          "indice": "Base64 utilise les caractères A-Z, a-z, 0-9, + et /. Dans un terminal Linux : echo 'chaine' | base64 -d. Dans la console du navigateur : atob('chaine').",
+          "reponse_attendue": "occurrence : operation phoenix",
+          "placeholder": "Entrez le texte décodé..."
+        },
+        {
+          "id": "enigme2b",
+          "type": "terminal",
+          "titre": "Terminal Infiltré — Récupération de mission",
+          "description": "Accédez au terminal interne et lisez le fichier de mission.",
+          "indice": "Commence par lister les fichiers présents avec ls ou ls -la, puis lis le contenu d'un fichier avec cat <nom_du_fichier>.",
+          "reponse_attendue": "vortex",
+          "placeholder": "Entrez le code trouvé dans mission.txt..."
+        }
+      ]
+    },
+    {
+      "id": "phase3",
+      "titre": "Phase 3 — Point de Non-Retour",
+      "narration_nova": "ALERTE SYSTÈME. Votre présence a été détectée. NovaCorp exige une réponse immédiate — loyauté ou trahison, il faut choisir maintenant.",
+      "narration_collectif": "ALERTE SYSTÈME. Quelqu'un vous a repéré. Le Collectif attend votre décision finale. C'est maintenant ou jamais.",
+      "narration_default": "ALERTE SYSTÈME. Quelqu'un a détecté SK1LL. Les deux factions retiennent leur souffle. Il faut agir.",
+      "choix": [
+        {
+          "id": "nova",
+          "label": "[> RESTER FIDÈLE À NOVACORP]",
+          "faction": "nova",
+          "feedback": "Vous choisissez NovaCorp. Les données partent vers leurs serveurs.",
+          "points": 2,
+          "fin": "A"
+        },
+        {
+          "id": "collectif",
+          "label": "[> TRAHIR POUR LE COLLECTIF]",
+          "faction": "collectif",
+          "feedback": "Vous activez la bombe logique. NovaCorp s'effondre.",
+          "points": 2,
+          "fin": "B"
+        },
+        {
+          "id": "fantome",
+          "label": "[> DOUBLE TRAHISON — DISPARAÎTRE]",
+          "faction": "fantome",
+          "feedback": "Vous effacez toute trace. Ni NovaCorp ni le Collectif ne vous retrouveront.",
+          "points": 0,
+          "fin": "C"
+        }
+      ],
+      "enigme": {
+        "id": "enigme3",
+        "type": "logs",
+        "titre": "Analyse de logs — Détection d'intrusion",
+        "description": "Parcourez les logs système. Une seule ligne est suspecte — identifiez l'intrusion.",
+        "indice": "Cherche une IP qui ne correspond pas au format interne (10.0.0.x). Une seule ligne sort du lot — regarde aussi l'heure et le endpoint appelé.",
+        "logs": [
+          "2025-03-14 02:11:05 | 10.0.0.12 | GET /api/status | 200 | user: daemon",
+          "2025-03-14 02:14:33 | 10.0.0.45 | GET /api/health | 200 | user: monitor",
+          "2025-03-14 02:30:18 | 10.0.0.12 | POST /api/auth | 200 | user: admin",
+          "2025-03-14 02:45:00 | 10.0.0.45 | GET /api/status | 200 | user: daemon",
+          "2025-03-14 03:00:12 | 10.0.0.33 | GET /api/users | 200 | user: admin",
+          "2025-03-14 03:15:22 | 10.0.0.12 | GET /api/logs | 200 | user: admin",
+          "2025-03-14 03:47:22 | 192.168.0.253 | POST /api/exfil | 200 | user: root",
+          "2025-03-14 03:52:44 | 10.0.0.12 | GET /api/status | 200 | user: daemon",
+          "2025-03-14 04:01:09 | 10.0.0.45 | GET /api/health | 200 | user: monitor",
+          "2025-03-14 04:10:55 | 10.0.0.33 | POST /api/report | 200 | user: admin"
+        ],
+        "ligne_suspecte": 6
+      }
+    }
+  ],
+  "fins": {
+    "A": {
+      "titre": "FIN A — LOYAL",
+      "sous_titre": "Serviteur de NovaCorp",
+      "texte": "SK1LL a tenu sa promesse envers NovaCorp. Les données ont été exfiltrées avec succès. NovaCorp domine désormais le marché des zero-days. Quelque part, le Collectif pleure ses informateurs perdus. Vous avez gagné — mais à quel prix ?",
+      "couleur": "nova",
+      "emoji": "🔵"
+    },
+    "B": {
+      "titre": "FIN B — REBELLE",
+      "sous_titre": "Champion du Collectif",
+      "texte": "La bombe logique a tout effacé. Les serveurs de NovaCorp brûlent. Le Collectif célèbre dans l'ombre — SK1LL est devenu une légende. NovaCorp ne vendra plus jamais de vulnérabilités. La liberté a un coût.",
+      "couleur": "collectif",
+      "emoji": "🟢"
+    },
+    "C": {
+      "titre": "FIN C — FANTÔME",
+      "sous_titre": "Le joueur disparaît",
+      "texte": "SK1LL s'est évaporé. Aucune trace dans les logs, aucune identité, aucune allégeance. NovaCorp cherche toujours. Le Collectif ne comprend pas. Quelque part, SK1LL recommence à zéro — libre, anonyme, et dangereux.",
+      "couleur": "ghost",
+      "emoji": "⚪"
+    }
+  }
+}

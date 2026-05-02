@@ -1,0 +1,190 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e1e1e;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .neon-nova {
+    color: #00fff0;
+    text-shadow: 0 0 8px #00fff0, 0 0 20px #00fff066;
+  }
+
+  .neon-collectif {
+    color: #39ff14;
+    text-shadow: 0 0 8px #39ff14, 0 0 20px #39ff1466;
+  }
+
+  .neon-red {
+    color: #ff3333;
+    text-shadow: 0 0 8px #ff3333, 0 0 20px #ff333366;
+  }
+
+  .neon-orange {
+    color: #ff9900;
+    text-shadow: 0 0 8px #ff9900, 0 0 20px #ff990066;
+  }
+
+  .glow-border-nova {
+    border-color: #00fff0;
+    box-shadow: 0 0 8px #00fff033, inset 0 0 8px #00fff011;
+  }
+
+  .glow-border-collectif {
+    border-color: #39ff14;
+    box-shadow: 0 0 8px #39ff1433, inset 0 0 8px #39ff1411;
+  }
+
+  .btn-terminal {
+    @apply px-4 py-2 border font-mono text-sm tracking-wider uppercase transition-all duration-200 cursor-pointer;
+    background: transparent;
+  }
+
+  .btn-nova {
+    @apply btn-terminal border-[#00fff0] text-[#00fff0];
+    text-shadow: 0 0 6px #00fff0;
+    box-shadow: 0 0 6px #00fff033;
+  }
+  .btn-nova:hover {
+    background: #00fff011;
+    box-shadow: 0 0 14px #00fff066;
+  }
+
+  .btn-collectif {
+    @apply btn-terminal border-[#39ff14] text-[#39ff14];
+    text-shadow: 0 0 6px #39ff14;
+    box-shadow: 0 0 6px #39ff1433;
+  }
+  .btn-collectif:hover {
+    background: #39ff1411;
+    box-shadow: 0 0 14px #39ff1466;
+  }
+
+  .btn-danger {
+    @apply btn-terminal border-[#ff3333] text-[#ff3333];
+    text-shadow: 0 0 6px #ff3333;
+    box-shadow: 0 0 6px #ff333333;
+  }
+  .btn-danger:hover {
+    background: #ff333311;
+    box-shadow: 0 0 14px #ff333366;
+  }
+
+  .btn-ghost {
+    @apply btn-terminal border-gray-600 text-gray-400;
+  }
+  .btn-ghost:hover {
+    @apply border-gray-400 text-gray-200;
+    background: #ffffff08;
+  }
+
+  .terminal-window {
+    @apply border bg-black rounded;
+    border-color: #1e1e1e;
+    background: #050505;
+  }
+
+  .terminal-header {
+    @apply flex items-center gap-2 px-4 py-2 border-b;
+    border-color: #1e1e1e;
+    background: #111111;
+  }
+
+  .scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.05) 2px,
+      rgba(0, 0, 0, 0.05) 4px
+    );
+  }
+
+  .cursor-blink::after {
+    content: '█';
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .flicker {
+    animation: flicker 4s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 95%, 100% { opacity: 1; }
+    96% { opacity: 0.8; }
+    97% { opacity: 1; }
+    98% { opacity: 0.6; }
+    99% { opacity: 1; }
+  }
+
+  .log-line {
+    @apply px-3 py-1 text-xs font-mono cursor-pointer transition-all duration-150 rounded;
+    color: #6b7280;
+  }
+
+  .log-line:hover {
+    background: #1a1a1a;
+    color: #9ca3af;
+  }
+
+  .log-line.selected {
+    background: #ff333322;
+    color: #ff3333;
+    text-shadow: 0 0 4px #ff3333;
+  }
+
+  .log-line.correct {
+    background: #39ff1422;
+    color: #39ff14;
+    text-shadow: 0 0 4px #39ff14;
+  }
+
+  .log-line.wrong {
+    background: #ff333322;
+    color: #ff3333;
+    animation: shake 0.3s ease;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+  }
+}
