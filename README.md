@@ -149,12 +149,7 @@ src/
 
 | Membre | Rôle |
 |--------|------|
-| Khadidiatou Konte | Lead Dev & Game Design |
-| Mateo Perez | Frontend & UI |
-| Alex Laudrin | Narration & Scénario |
-| Robin Pettito | Enigmes & Cybersécurité |
-| Pierre Bekonno | Intégration & Déploiement |
-
+| Khadidiatou Konte
 ---
 
 ## Licence
