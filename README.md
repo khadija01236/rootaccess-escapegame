@@ -132,7 +132,7 @@ r  → e
 la clé de voûte est : flamme
 ```
 
-> Outil en ligne : [rot13.com](https://rot13.com) — coller le texte chiffré et lire le résultat.
+> Outil en ligne : rot13.com — coller le texte chiffré et lire le résultat.
 
 ---
 
@@ -273,14 +273,25 @@ src/
 
 ---
 
+## Scripts disponibles
+
+| Commande | Description |
+|----------|-------------|
+| `npm run dev` | Serveur de développement (hot-reload) sur http://localhost:5173 |
+| `npm run build` | Build de production dans `dist/` |
+| `npm run preview` | Prévisualisation du build de production |
+
+---
+
 ## Stack technique
 
-- **React 18** + **Vite**
-- **Tailwind CSS** (dark UI hacker terminal)
-- **React Context API** (GameContext)
-- **SessionStorage** (persistance locale)
-- **crypto-js** (hachage SHA-256)
-- Police : JetBrains Mono (Google Fonts)
+| Outil | Version | Usage |
+|-------|---------|-------|
+| React | 18.3 | UI & logique composants |
+| Vite | 6.0 | Bundler & dev server |
+| Tailwind CSS | 3.4 | Styles (dark UI terminal) |
+| crypto-js | 4.2 | Hachage SHA-256 |
+| JetBrains Mono | — | Police monospace (Google Fonts) |
 
 ---
 
